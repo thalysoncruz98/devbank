@@ -70,3 +70,7 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+# Add devise gem
+gem "devise", "~> 4.8"
+gem "devise-i18n", "~> 1.10"
