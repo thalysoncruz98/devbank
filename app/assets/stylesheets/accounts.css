@@ -1,0 +1,156 @@
+body{
+   /*background-color:slategray;*/
+   background-color: rgb(248, 248, 248);
+   padding: 0;
+   height: 100vh;
+   display: flex;
+   color: rgba(255, 255, 255, 0.87);
+   overflow-y: hidden;
+}
+  
+h2{
+   padding-bottom: 40px;
+   font-size: 48px;
+}
+
+.main{
+   float: right;
+   width: 38%;
+   height: 100%;
+   margin:inherit; 
+   text-align: center;
+   align-items: center;
+   justify-content: center;
+   background-color: indigo;
+}
+
+.main p{
+   color: white !important;
+   background-color: green;
+}
+
+.user{
+   display: flex;
+   justify-content: center;
+   text-align: center;
+   align-items: center;
+}
+
+.picture{
+   padding-top: 3rem;
+   height: 55%;
+}
+
+.fa-user-circle{
+   font-size: 240px;
+}
+
+.fa-arrow-circle-right{
+   font-size: 80px;
+   float: right;
+   color:#0d6efd;
+}
+
+.fa-sign-out{
+font-size: 80px;
+}
+
+.btn-logout{
+margin-top: 70px;
+width: auto;
+}
+
+.button_to{
+display: flex;
+text-align: center;
+align-items: center;
+justify-content: center;
+}
+
+.cash{
+   display: flex;
+   justify-content: center;
+   text-align: center;
+   align-items: center;
+   font-size: 30px;
+}
+
+.cash .cashView{
+display: none;
+}
+  
+.mainBox{
+   align-items: center;
+   text-align: center;
+   justify-content: center;
+   width: 300px;
+}
+
+.field{
+   padding-bottom: 1rem;
+   text-align: left;
+}
+
+.field input{
+   height: 45px;
+   border: none;
+   border-bottom: 2px solid #000;
+   background-color: inherit;
+   width: 100%;
+}
+  
+.field input:focus{
+   outline: 0;
+}
+
+.actionsBox{
+   width: 100%;
+}
+
+.actions{
+   padding: 3rem;
+}
+  
+.actions input{
+   height: 50px;
+   width: 200px;
+   border: none;
+   font-size: 35px;
+   background-color: inherit;
+   color: indigo;
+}
+  
+.actions input:hover{
+   font-weight: bold;
+}
+
+.actions{
+   color: black;
+   height: 20%;
+   width: 100%;
+   align-items: center;
+   text-align: center;
+   margin: 0;
+   padding: 0;
+}
+
+.actions button{
+   background-color: inherit;
+   border: none;
+   width: 100%;
+   height: 100%;
+   font-size: 40px;
+   text-align: left;
+   justify-content: center;
+   padding-left: 2rem;
+   padding-right: 2rem;
+}
+
+.actions button:hover{
+   background-color: indigo;
+   color: rgb(248, 248, 248);
+}
+
+.actions button:hover i{
+   color: rgb(248, 248, 248);
+}
