@@ -1,14 +1,79 @@
-<p style="color: green"><%= notice %></p>
+<!-- Link to styling -->
+<%= stylesheet_link_tag 'accounts.css' %>
 
-<h1>Accounts</h1>
-
-<div id="accounts">
-  <% @accounts.each do |account| %>
-    <%= render account %>
-    <p>
-      <%= link_to "Show this account", account %>
-    </p>
+<!-- Link to Javascript -->
+<%= javascript_include_tag 'app' %>
+ 
+<div class="main">
+ <p style="color: green"><%= notice %></p>
+ 
+ <div class="user">
+   <!-- Search current user in the system -->
+   <h1>Devbank</h1>
+   <i class="fa fa-envelope-open" aria-hidden="true"> &nbsp;</i>
+   <% @task = current_user %>
+   <% if current_user.nil? %>
+   <% else %>
+       <%= @task.email %>
+   <% end %>
+ </div>
+ 
+ <div class="picture">
+  <i class="fa fa-user-circle" aria-hidden="true"></i>
+ </div>
+ 
+ <!-- Current customer balance -->
+ <div class="cash">
+    <h1>R$ &nbsp;</h1>
+    <% if current_user.nil? %>
+    <% else %>
+        <div id="cashView" class="cashView">
+        <%= @task.cash %>
+        </div>
+        <div id="cashNone" class="cashNone">
+          *****
+        </div>
+    <% end %>
+  </div>
+ 
+  <!-- Log Out -->
+  <%= button_to destroy_user_session_path, method: :delete, class:"btn-logout bg-transparent border border-0 text-start w-25" do %>
+    <i class="fa fa-sign-out text-white" aria-hidden="true"></i>
   <% end %>
 </div>
-
-<%= link_to "New account", new_account_path %>
+ 
+<div class="actionsBox">
+    <div class="actions">
+      <button onclick="functionViewCash()">
+        Saldo &nbsp;<i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+      </button>
+    </div>
+    <div class="actions">
+      <a href="/movements/new">
+        <button onclick="functionCashOut()">
+          Saque &nbsp;<i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+        </button>
+      </a>
+    </div>
+    <div class="actions">
+      <a href="/movements/new">
+        <button onclick="functionDeposit()">
+          Deposito &nbsp;<i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+        </button>    
+      </a>
+    </div>
+    <div class="actions">
+      <a href="/movements/new">
+        <button onclick="functionTransfer()">
+          Transferência &nbsp;<i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+        </button>
+      </a>
+    </div>
+    <div class="actions">
+      <a href="/movements">
+        <button>
+          Extrato &nbsp;<i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+        </button>
+      <a>
+    </div>
+</div>
