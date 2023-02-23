@@ -1,0 +1,44 @@
+<%= form_with(model: movement) do |form| %>
+    <% if movement.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(movement.errors.count, "error") %> prohibited this movement from being saved:</h2>
+  
+        <ul>
+          <% movement.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  
+    <!-- Div para Deposito -->
+    <div class="deposit" id="movement">
+      <div class="movementTitle">
+        <h1>Deposito</h1>
+        <i class="fa fa-envelope-open" aria-hidden="true"> &nbsp;</i>
+      </div>
+  
+      <div class="cashInput">
+        <%= form.text_field :cashout, autocomplete: "off", autofocus:true %>
+        <%= form.hidden_field :movement_type, value: "Deposito" %>
+        <%= form.hidden_field :date_current, value: Time.now.strftime("%d/%m/%Y") %>
+        <%= form.hidden_field :day_current, value: I18n.l(Time.now, format: "%A") %>
+        <%= form.hidden_field :hour_current, value: Time.now.strftime("%H:%M") %>
+      </div>
+    </div>
+  
+    <!-- Div para confirmar Saque -->
+    <div class="confirmDeposit" id="movementConfirm">
+      <div class="confirmMovementTitle">
+        <h1 class="text-start">Confirmar</h1>
+        <h1> Deposito?</h1>
+        <i class="fa fa-envelope-open" aria-hidden="true"> &nbsp;</i>
+      </div>
+  
+      <div class="confirmCashButtons" id="confirmCashButtons">
+        <button href><a href="/accounts"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i></a></button>
+        <button id="confirm" border:none;"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></button
+      </div>
+    </div>
+  <% end %>
+  
