@@ -1,9 +1,70 @@
-<h1>New movement</h1>
+<!-- Link para estilização da página -->
+<%= stylesheet_link_tag 'movements.css' %>
 
-<%= render "form", movement: @movement %>
+<!-- Link para Javascript da página -->
+<%= javascript_include_tag 'app' %>
 
-<br>
+<div class="main">
+  <p style="color: green"><%= notice %></p>
+  
+  <div class="user">
+    <!-- Search current user in the system -->
+    <h1>Devbank</h1>
+    <i class="fa fa-envelope-open" aria-hidden="true"> &nbsp;</i>
+    <% @task = current_user %>
+    <% if current_user.nil? %>
+    <% else %>
+        <%= @task.email %>
+    <% end %>
+  </div>
+ 
+  <div class="picture">
+    <i class="fa fa-user-circle" aria-hidden="true"></i>
+  </div>
+  
+  <!-- Current customer balance -->
+  <div class="cash">
+    <h1>R$&nbsp;</h1>
+    <% if current_user.nil? %>
+    <% else %>
+        <%= @task.cash %>
+    <% end %>
+  </div>
 
-<div>
-  <%= link_to "Back to movements", movements_path %>
+  <!-- Log Out -->
+  <%= button_to destroy_user_session_path, method: :delete, class:"btn-logout bg-transparent border border-0 text-start w-25" do %>
+    <i class="fa fa-sign-out text-white" aria-hidden="true"></i>
+  <% end %>
 </div>
+ 
+<div class="actionsBox">
+  <!-- Create variables to receive rendering forms -->
+  <% cashout_form = j render 'form', movement: @movement %>
+  <% deposit_form = j render 'form_deposit', movement: @movement %>
+  <% transfer_form = j render 'form_transfer', movement: @movement %>
+
+  <div id="actionsBox">
+    <!-- Script to check which type of movement will be performed -->
+    <script>
+        if(movementType == "cashout"){
+          document.getElementById("actionsBox").innerHTML = document.getElementById("actionsBox").innerHTML = '<%= cashout_form %>';        ;
+        }else if(movementType == "deposit"){
+          document.getElementById("actionsBox").innerHTML = '<%= deposit_form %>';
+        }else{
+          document.getElementById("actionsBox").innerHTML = '<%= transfer_form %>';
+        }
+    </script>
+  </div>
+  
+  <div class="cashButtons" id="cashButtons">
+    <button href><a href="/accounts"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i></a></button>
+    <button id="next" onclick="myfunction()" border:none;"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></button
+  </div>
+  <br>
+</div>
+
+
+
+
+
+
