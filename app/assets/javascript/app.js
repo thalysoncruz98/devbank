@@ -1,17 +1,27 @@
 //SCRIPT ACCOUNTS
 var movementType;
 
+//Logic to view and hide the current value
 function functionViewCash(){
-document.getElementById("cashView").style.display="block";
-document.getElementById("cashNone").style.display="none";
+  number = document.getElementById("cashView");
+  character = document.getElementById("cashNone");
+
+  if(number.style.display != "block"){
+  number.style.display = "block";
+  character.style.display = "none";
+  }else{
+  number.style.display = "none";
+  character.style.display = "block";
+  }
 }
+
 function functionCashOut(){
-movementType = "cashout";
+  movementType = "cashout";
 }
 function functionDeposit(){
-movementType = "deposit";
+  movementType = "deposit";
 }
 function functionTransfer(){
-movementType = "transfer";
+  movementType = "transfer";
 }
 
