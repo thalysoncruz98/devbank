@@ -30,6 +30,9 @@ gem "jbuilder"
 #Add bootstrap gem
 gem "bootstrap", "~> 5.2.0"
 
+#Add Fontawesome
+gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.8'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
