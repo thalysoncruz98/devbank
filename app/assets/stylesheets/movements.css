@@ -1,0 +1,383 @@
+body{
+    /*background-color:slategray;*/
+    background-color: rgb(248, 248, 248);
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    color: rgba(255, 255, 255, 0.87);
+    overflow-y: hidden;
+ }
+
+ p{
+   background-color: green;
+   color: white !important;
+ }
+  
+ h2{
+    padding-bottom: 40px;
+    font-size: 48px;
+ }
+
+ button{
+   border: none;
+   height: 100px;
+   width: 150px;
+   font-size: 50px;
+   background-color: inherit;
+   font-weight: bold;
+   text-decoration: none;
+ }
+
+ a{
+   text-decoration: none;
+ }
+
+ input{
+   width: 70%;
+   height: 200px;
+   border: none;
+   font-size: 120px;
+   background-color: inherit;
+ }
+
+ h3{
+   color: indigo;
+   margin-bottom: 0;
+ }
+
+ input:focus{
+   outline: 0;
+ }
+ 
+  
+ .main{
+    float: right;
+    width: 38%; /* Define o tamanho da div */
+    height: 100%; /* Define o tamanho da div */
+    margin:inherit; /* Centraliza a div horizontalmente e verticalmente */
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background-color: indigo;
+ }
+  
+ .user{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+ }
+
+ .fa-sign-out{
+    font-size: 80px;
+  }
+  
+  .btn-logout{
+    margin-top: 65px;
+    width: auto;
+  }
+  
+ .picture{
+    padding-top: 3rem;
+    height: 55%;
+ }
+
+ .fa-user-circle{
+    font-size: 240px;
+ }
+
+ .fa-arrow-circle-right{
+    font-size: 80px;
+    float: right;
+ }
+
+ .fa-chevron-circle-left{
+   font-size: 100px;
+ }
+  
+ .cash{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    font-size: 30px;
+ }
+  
+ .mainBox{
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    width: 300px;
+ }
+  
+ .field{
+    padding-bottom: 1rem;
+    text-align: left;
+ }
+  
+ .field input{
+    height: 45px;
+    border: none;
+    border-bottom: 2px solid #000;
+    background-color: inherit;
+    width: 100%;
+ }
+ 
+ #movement_destiny{
+   border-bottom: solid 2px indigo ;
+   margin-bottom: 10px;
+   margin-left: 10px;
+ }
+
+ .field input:focus{
+    outline: 0;
+ }
+ 
+ .actionsBox{
+    width: 100%;
+ }
+
+ .actionsBox h1{
+   color: #000;
+   margin-left: 40px;
+   font-size: 100px;
+   color: indigo;
+ }
+
+ .actionsBox .fa-envelope-open{
+   color: indigo;
+   font-size: 40px;
+ }
+
+ .actions{
+    padding: 3rem;
+ }
+  
+ .actions input{
+    height: 50px;
+    width: 200px;
+    border: none;
+    font-size: 35px;
+    background-color: inherit;
+    color: indigo;
+ }
+  
+ .actions input:hover{
+    font-weight: bold;
+ }
+
+ .actions{
+    color: black;
+    height: 20%;
+    width: 100%;
+ 
+    align-items: center;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+ }
+
+ .actions button{
+    background-color: inherit;
+    border: none;
+    width: 100%;
+    height: 100%;
+    font-size: 40px;
+    text-align: left;
+    justify-content: center;
+    padding-left: 2rem;
+    padding-right: 2rem;
+ }
+
+ .actions button:hover{
+    background-color: indigo;
+    color: rgb(248, 248, 248);
+ }
+
+ .cashOut{
+   justify-content: center;
+   align-items: center;
+   text-align: center;
+ }
+
+ .deposit{
+   justify-content: center;
+   align-items: center;
+   text-align: center;
+ }
+
+ .transfer{
+   justify-content: center;
+   align-items: center;
+   text-align: center;
+ }
+
+ .confirmTransfer{
+   justify-content: center;
+   align-items: center;
+   margin-bottom: 200px !important;
+ }
+
+ .confirmTransfer input{
+   font-size: 1.75rem;
+   height: 50px;
+   width: 500px;
+ }
+
+ .confirmTransfer .confirmCashButtons{
+   margin-top: 210px;
+ }
+
+ .destinyTransfer{
+   height: 100px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   text-align: center;
+ }
+
+ .destinyTransfer i{
+   height: 100px !important;
+ }
+
+ .confirmCashOut{
+   display: none;
+ }
+
+ .confirmDeposit{
+   display: none;
+ }
+
+ .confirmTransfer{
+   display: none;
+ }
+
+ .cashOut i {
+   font-size: 100px;
+   color: #0d6efd;
+ }
+
+ .cashInput{
+   padding-top: 80px;
+   padding-bottom: 158px;
+ }
+
+ .cashButtons #next{
+   float: right;
+ }
+
+ .cashButtons i{
+   font-size: 100px;
+   color: #0d6efd;
+ }
+
+ .cashButtons i:hover{
+   color: indigo;
+ }
+
+ .confirmCashButtons #confirm{
+   float: right;
+ }
+
+ .confirmCashButtons i{
+   font-size: 100px;
+   color: #0d6efd;
+ }
+
+ .confirmCashButtons i:hover{
+   color: indigo;
+ }
+
+.movementTitle{
+   align-items: center;
+   display: flex;
+}
+
+.confirmMovementTitle{
+   text-align: end;
+}
+
+.confirmMovementTitle h1{
+   text-align: center;
+   font-weight:bolder !important;
+}
+
+.confirmMovementTitle i{
+   margin-top: 50px;
+   margin-bottom: 60px;
+   font-size: 200px !important;
+}
+
+/*Estilização da Página de extrato*/
+table {
+  width: 100%;
+  overflow: visible;
+}
+
+
+#extract{
+  width: 100%;
+  height: 364px;
+  color: #000;
+  overflow: visible;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  margin-bottom:10px;
+  margin-top:25px;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+th {
+  background-color: indigo;
+  color: white;
+  position: sticky;
+  top: 0;
+  color: white;
+}
+
+#extract::-webkit-scrollbar {
+  width: 12px;
+  background-color: #F5F5F5;
+}
+
+#extract::-webkit-scrollbar-thumb {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: indigo;
+}
+
+/*Estilização do filtro de busca*/
+.search_form{
+  background-color: inherit;
+  justify-content: end;
+}
+
+.search_form .search_actions{
+  justify-content: end;
+}
+
+.search_form button{
+  height: 40px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  background-color: inherit !important;
+  width: 5%;
+  font-size: 40px;
+  color: #0d6efd;
+}
+
+.search_form button:hover{
+  font-size: 50px;
+}
+
+.search_form input{
+  height: 40px;
+}
