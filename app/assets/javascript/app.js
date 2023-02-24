@@ -15,6 +15,7 @@ function functionViewCash(){
   }
 }
 
+//Functions for movement type
 function functionCashOut(){
   movementType = "cashout";
 }
@@ -25,3 +26,9 @@ function functionTransfer(){
   movementType = "transfer";
 }
 
+//Script for movement pages
+function myfunction(){
+  document.getElementById("movement").style.display="none";
+  document.getElementById("movementConfirm").style.display="block";
+  document.getElementById("cashButtons").style.display="none";
+}
