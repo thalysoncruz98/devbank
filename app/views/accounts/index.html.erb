@@ -28,7 +28,7 @@
     <% if current_user.nil? %>
     <% else %>
         <div id="cashView" class="cashView">
-          <%= @task.cash %>
+          <%= number_to_currency(@task.cash, unit: "R$ ", separator: ",", delimiter: ".") %>
         </div>
         <div id="cashNone" class="cashNone">
           *****
