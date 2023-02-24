@@ -65,6 +65,6 @@ class MovementsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def movement_params
-      params.fetch(:movement, {})
+      params.require(:movement).permit(:cashout, :movement_type, :destiny, :date_current, :hour_current, :day_current)
     end
 end
