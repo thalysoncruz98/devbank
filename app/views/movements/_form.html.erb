@@ -11,7 +11,33 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.submit %>
+  <!-- Div Cash Out -->
+  <div class="cashOut" id="movement">
+    <div class="movementTitle">
+      <h1>Saque</h1>
+      <i class="fa fa-envelope-open" aria-hidden="true"> &nbsp;</i>
+    </div>
+
+    <div class="cashInput">
+      <%= form.text_field :cashout, autocomplete: "off", autofocus:true %>
+      <%= form.hidden_field :movement_type, value: "Saque" %>
+      <%= form.hidden_field :date_current, value: Time.now.strftime("%d/%m/%Y") %>
+      <%= form.hidden_field :day_current, value: I18n.l(Time.now, format: "%A") %>
+      <%= form.hidden_field :hour_current, value: Time.now.strftime("%H:%M") %>
+    </div>
+  </div>
+
+  <!-- Div to confirm cash out -->
+  <div class="confirmCashOut" id="movementConfirm">
+    <div class="confirmMovementTitle">
+      <h1 class="text-start">Confirmar</h1>
+      <h1> Saque?</h1>
+      <i class="fa fa-envelope-open" aria-hidden="true"> &nbsp;</i>
+    </div>
+
+    <div class="confirmCashButtons" id="confirmCashButtons">
+      <button href><a href="/accounts"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i></a></button>
+      <button id="confirm" border:none;"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></button
+    </div>
   </div>
 <% end %>
