@@ -22,6 +22,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_23_225944) do
   create_table "movements", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "cashout"
+    t.string "movement_type"
+    t.string "destiny"
+    t.string "date_current"
+    t.string "hour_current"
+    t.string "day_current"
   end
 
   create_table "users", force: :cascade do |t|
