@@ -64,6 +64,28 @@ class MovementsController < ApplicationController
             end
           end
         end
+      # Logic to peform the deposit
+      elsif @movement.movement_type == "Deposito"
+        if @movement.cashout.nil?
+          flash[:error] = "Saldo insuficiente para realizar o saque"
+          respond_to do |format|
+              format.html { redirect_to request.referrer, notice: "Digite um valor para o deposito" }
+          end
+        else
+          # if no error, perform calculation and redirect page
+          new_cash = @valor.cash + @movement.cashout
+          User.update(cash: new_cash)
+
+          respond_to do |format|
+            if @movement.save
+              format.html { redirect_to request.referrer, notice: "Deposito realizado com sucesso" }
+              format.json { render :show, status: :created, location: @movement }
+            else
+              format.html { render :new, status: :unprocessable_entity }
+              format.json { render json: @movement.errors, status: :unprocessable_entity }
+            end
+          end
+        end
       end
 
   end
