@@ -32,3 +32,11 @@ function myfunction(){
   document.getElementById("movementConfirm").style.display="block";
   document.getElementById("cashButtons").style.display="none";
 }
+
+//Script for cash mask
+function formatCurrency(input) {
+  var value = input.value.replace(/\D/g, '');
+  value = (value/100).toLocaleString('pt-BR', {minimumFractionDigits: 2});
+  input.value = value;
+ }
+ 
