@@ -27,7 +27,7 @@
     <h1>R$&nbsp;</h1>
     <% if current_user.nil? %>
     <% else %>
-        <%= @task.cash %>
+      <%= number_to_currency(@task.cash, unit: "R$ ", separator: ",", delimiter: ".") %>
     <% end %>
   </div>
 
