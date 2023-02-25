@@ -23,15 +23,38 @@ class MovementsController < ApplicationController
   def create
     @movement = Movement.new(movement_params)
 
-    respond_to do |format|
-      if @movement.save
-        format.html { redirect_to movement_url(@movement), notice: "Movement was successfully created." }
-        format.json { render :show, status: :created, location: @movement }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @movement.errors, status: :unprocessable_entity }
+      # Get balance from logged in user.
+      @valor = current_user
+
+      # Logic to peform the cashout
+      if @movement.movement_type == "Saque"
+        if @movement.cashout.nil?
+          flash[:error] = "Saldo insuficiente para realizar o saque"
+          respond_to do |format|
+              format.html { redirect_to request.referrer, notice: "Digite um valor para saque" }
+          end
+        elsif @movement.cashout > @valor.cash
+          flash[:error] = "Saldo insuficiente para realizar o saque"
+          respond_to do |format|
+          format.html { redirect_to request.referrer, notice: "Saldo insuficiente para saque" }
+          end
+        else
+          # if no error, perform calculation and redirect page
+          new_cash = @valor.cash - @movement.cashout
+          User.update(cash: new_cash)
+          
+          respond_to do |format|
+            if @movement.save
+              format.html { redirect_to request.referrer, notice: "Saque realizado com sucesso" }
+              format.json { render :show, status: :created, location: @movement }
+            else
+              format.html { render :new, status: :unprocessable_entity }
+              format.json { render json: @movement.errors, status: :unprocessable_entity }
+            end
+          end
+        end
       end
-    end
+
   end
 
   # PATCH/PUT /movements/1 or /movements/1.json
