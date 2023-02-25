@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  #Initial redirect to login
+  root :to => redirect('/login')
+  # Defines the root path route ("/")
   resources :movements
   resources :accounts
   devise_for :users, path: '', path_names: {
@@ -8,7 +11,4 @@ Rails.application.routes.draw do
     registration: 'signup'
   }
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
 end
