@@ -19,7 +19,7 @@
       </div>
   
       <div class="cashInput">
-        <%= form.text_field :cashout, autocomplete: "off", autofocus:true %>
+        <%= form.text_field :cashout, default: 0.0, autocomplete: "off", onkeypress: "return (event.charCode >= 48 && event.charCode <= 57) || event.charCode == 46" %>
         <%= form.hidden_field :movement_type, value: "Deposito" %>
         <%= form.hidden_field :date_current, value: Time.now.strftime("%d/%m/%Y") %>
         <%= form.hidden_field :day_current, value: I18n.l(Time.now, format: "%A") %>
