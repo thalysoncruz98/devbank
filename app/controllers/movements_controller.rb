@@ -26,19 +26,20 @@ class MovementsController < ApplicationController
       # Get balance from logged in user.
       @valor = current_user
 
-      # Check if cashout is a valid number
-      begin
-        Float(params[:movement][:cashout])
-      rescue ArgumentError
-        flash[:error] = "Valor inválido para saque"
-        respond_to do |format|
-          format.html { redirect_to request.referrer, notice: "Digite um valor válido para saque" }
-        end
-        return
-      end
-
       # Logic to peform the cashout
       if @movement.movement_type == "Saque"
+
+        # Check if cash is a valid number
+        begin
+          Float(params[:movement][:cashout])
+        rescue ArgumentError
+          flash[:error] = "Valor inválido para saque"
+          respond_to do |format|
+            format.html { redirect_to request.referrer, notice: "Digite um valor válido para saque" }
+          end
+          return
+        end
+
         if @movement.cashout.nil?
           flash[:error] = "Saldo insuficiente para realizar o saque"
           respond_to do |format|
@@ -66,6 +67,18 @@ class MovementsController < ApplicationController
         end
       # Logic to peform the deposit
       elsif @movement.movement_type == "Deposito"
+
+        # Check if cash is a valid number
+        begin
+          Float(params[:movement][:cashout])
+        rescue ArgumentError
+          flash[:error] = "Valor inválido para saque"
+          respond_to do |format|
+            format.html { redirect_to request.referrer, notice: "Digite um valor válido para deposito" }
+          end
+          return
+        end
+
         if @movement.cashout.nil?
           flash[:error] = "Saldo insuficiente para realizar o saque"
           respond_to do |format|
