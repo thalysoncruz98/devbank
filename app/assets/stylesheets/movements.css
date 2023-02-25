@@ -14,8 +14,13 @@ body{
  }
   
  h2{
-    padding-bottom: 40px;
-    font-size: 48px;
+  padding-bottom: 40px;
+  font-size: 48px;
+ }
+
+ h1{
+  margin: 0;
+  padding: 0;
  }
 
  button{
@@ -52,9 +57,9 @@ body{
   
  .main{
     float: right;
-    width: 38%; /* Define o tamanho da div */
-    height: 100%; /* Define o tamanho da div */
-    margin:inherit; /* Centraliza a div horizontalmente e verticalmente */
+    width: 38%; 
+    height: 100%;
+    margin:inherit;
     text-align: center;
     align-items: center;
     justify-content: center;
@@ -91,19 +96,36 @@ body{
     float: right;
  }
 
- .fa-chevron-circle-left{
-   font-size: 100px;
- }
+ .fa-sign-out{
+  font-size: 60px;
+  }
+
+ .btn-logout{
+  margin-top: 54px;
+  width: auto;
+  }
+  
+  .button_to{
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+  }
   
  .cash{
     display: flex;
     justify-content: center;
     text-align: center;
     align-items: center;
+    width: 100%;
     margin-right: 50px;
     font-size: 30px;
  }
-  
+
+ .cash .cashView{
+  display: none;
+  }
+
  .mainBox{
     align-items: center;
     text-align: center;
