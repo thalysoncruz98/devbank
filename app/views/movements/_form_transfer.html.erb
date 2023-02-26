@@ -21,6 +21,7 @@
       <div class="cashInput">
         <%= form.text_field :cashout, autocomplete: "off", autofocus:true %>
         <%= form.hidden_field :movement_type, value: "Transferência" %>
+        <%= form.hidden_field :user, value: current_user.id %>
         <%= form.hidden_field :date_current, value: Time.now.strftime("%d/%m/%Y") %>
         <%= form.hidden_field :day_current, value: I18n.l(Time.now, format: "%A") %>
         <%= form.hidden_field :hour_current, value: Time.now.strftime("%H:%M") %>
