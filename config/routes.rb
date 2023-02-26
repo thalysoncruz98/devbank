@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   root :to => redirect('/login')
   #Route to fetch moves
   get'search',to: "movements#search"
+  #Route to lock account
+  post '/lock_account', to: 'application#lock_account', as: :lock_account
   # Defines the root path route ("/")
   resources :movements
   resources :accounts
@@ -10,7 +12,8 @@ Rails.application.routes.draw do
     sign_in: 'login',
     sign_out: 'logout',
     password: 'password_reset',
-    registration: 'signup'
+    registration: 'signup',
+    unlock: 'unlock_account'
   }
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 end
