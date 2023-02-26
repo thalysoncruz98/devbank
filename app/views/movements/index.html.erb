@@ -58,9 +58,11 @@
       </thead>
       <tbody>
         <% @movements.each do |movement| %>
-          <%= render movement %>
-          <%= @object %>
+          <% if movement.user == current_user.id %>
+            <%= render movement %>
+            <%= @object %>
           <% end %>
+        <% end %>
       </tbody>
     </table>
   </div>
