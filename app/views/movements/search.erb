@@ -1,0 +1,80 @@
+<!-- Link para estilização da página -->
+<%= stylesheet_link_tag 'movements.css' %>
+
+<div class="main">
+ <p style="color: green"><%= notice %></p>
+ 
+ <div class="user">
+   <!-- Buscar usúario logado no sistema -->
+   <h1>Ecubank</h1>
+   <i class="fa fa-envelope-open" aria-hidden="true"> &nbsp;</i>
+   <% @task = current_user %>
+   <% if current_user.nil? %>
+   <% else %>
+       <%= @task.email %>
+   <% end %>
+ </div>
+ 
+ <div class="picture">
+  <i class="fa fa-user-circle" aria-hidden="true"></i>
+ </div>
+ 
+ <!-- Saldo do cliente logado -->
+ <div class="cash">
+   <h1>R$ &nbsp;</h1>
+   <% if current_user.nil? %>
+   <% else %>
+       <%= @task.cash %>
+   <% end %>
+ </div>
+
+ <!-- Log Out -->
+ <%= button_to destroy_user_session_path, method: :delete, class:"btn-logout bg-transparent border border-0 text-start w-25" do %>
+   <i class="fa fa-sign-out text-white" aria-hidden="true"></i>
+ <% end %>
+</div>
+ 
+<div class="actionsBox">
+  <div class="movementTitle">
+    <h1>Extrato</h1>
+    <i class="fa fa-envelope-open" aria-hidden="true"> &nbsp;</i>
+  </div>
+
+  <form class="row ms-0 mb-2 me-1 d-flex align-items-center search_form" action="/search" style="background-color: #F4F4F4;">
+    <div class="d-flex search_actions">
+      <input class="form-control w-25" type="text" id="exampleInputPassword1" name="q" value="01/01/2022" pattern="\d{2}/\d{2}/\d{4}"><br>
+      <input class="form-control w-25 mx-3" type="text" id="exampleInputPassword1" name="i" value="01/01/2022" pattern="\d{2}/\d{2}/\d{4}"><br>
+      <button type="submit" class=""><i class="fa fa-search" aria-hidden="true"></i></button>
+    </div>
+  </form>
+
+  <div id="extract">
+    <!--<% @movements.each do |movement| %>
+      <%= render movement %>
+      <p>
+        <%= link_to "Show this movement", movement %>
+      </p>
+    <% end %>-->
+
+    <table>
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Movimentação</th>
+          <th>Valor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @movements.each do |movement| %>
+          <%= render movement %>
+          <%= @object %>
+          <% end %>
+      </tbody>
+    </table>
+
+  </div>
+
+  <div class="cashButtons" id="cashButtons">
+    <button href><a href="/accounts"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i></a></button>
+  </div>
+</div>
