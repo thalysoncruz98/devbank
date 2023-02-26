@@ -28,7 +28,6 @@ class MovementsController < ApplicationController
 
       # Logic to peform the cashout
       if @movement.movement_type == "Saque"
-
         # Check if cash is a valid number
         begin
           Float(params[:movement][:cashout])
@@ -39,12 +38,13 @@ class MovementsController < ApplicationController
           end
           return
         end
-
+        # Check if value is null
         if @movement.cashout.nil?
           flash[:error] = "Saldo insuficiente para realizar o saque"
           respond_to do |format|
               format.html { redirect_to request.referrer, notice: "Digite um valor para saque" }
           end
+        # Check if amount is greater than balance
         elsif @movement.cashout > @valor.cash
           flash[:error] = "Saldo insuficiente para realizar o saque"
           respond_to do |format|
@@ -54,7 +54,6 @@ class MovementsController < ApplicationController
           # if no error, perform calculation and redirect page
           new_cash = @valor.cash - @movement.cashout
           User.update(cash: new_cash)
-          
           respond_to do |format|
             if @movement.save
               format.html { redirect_to request.referrer, notice: "Saque realizado com sucesso" }
@@ -67,7 +66,6 @@ class MovementsController < ApplicationController
         end
       # Logic to peform the deposit
       elsif @movement.movement_type == "Deposito"
-
         # Check if cash is a valid number
         begin
           Float(params[:movement][:cashout])
@@ -78,7 +76,7 @@ class MovementsController < ApplicationController
           end
           return
         end
-
+        # Check if value is null
         if @movement.cashout.nil?
           flash[:error] = "Saldo insuficiente para realizar o saque"
           respond_to do |format|
@@ -99,8 +97,130 @@ class MovementsController < ApplicationController
             end
           end
         end
+      # Logic to perform the transfer
+      else
+        # Check if value is null
+        if @movement.cashout.nil?
+          flash[:error] = "Saldo insuficiente para realizar a transferência"
+          respond_to do |format|
+              format.html { redirect_to request.referrer, notice: "Digite um valor para a transferência" }
+          end
+        # Check if amount is greater than balance
+        elsif @movement.cashout > @valor.cash
+          flash[:error] = "Saldo insuficiente para realizar transferência"
+          respond_to do |format|
+          format.html { redirect_to request.referrer, notice: "Saldo insuficiente para transferência" }
+          end
+        else
+          # Checking if the recipient field is empty
+          if @movement.destiny == ""
+            flash[:error] = "Digite o email do destinatário"
+            respond_to do |format|
+                format.html { redirect_to request.referrer, notice: "Digite o email do destinatário" }
+            end
+          else
+            if @movement.day_current != "Saturday"
+              flash[:error] = "Digite o email do destinatário"
+              respond_to do |format|
+                  format.html { redirect_to request.referrer, notice: "Transferência apenas de segunda a sexta" }
+              end
+            else
+              # Check if number is greater than 1000 to charge 10 reais more
+              if @valor.cash > 1000
+                # Check if the time of movement is between 9 and 18 to charge 5 more. If not... charge 7 reais more
+                if @movement.hour_current >= "09" && @movement.hour_current <= "18"
+                  # Check if the transfer amount added to the fee amount is greater than the current balance
+                  if (@movement.cashout + 15) > @valor.cash
+                    flash[:error] = "Saldo insuficiente para realizar transferência"
+                    respond_to do |format|
+                    format.html { redirect_to request.referrer, notice: "Saldo insuficiente para transferência" }
+                    end
+                  else
+                    new_cash = @valor.cash - (@movement.cashout + 15)
+                    User.update(cash: new_cash)
+                    User.where(email: @movement.destiny).update_all(cash:@valor.cash + @movement.cashout)
+                    respond_to do |format|
+                      if @movement.save
+                        format.html { redirect_to request.referrer, notice: "Transferência realizado com sucesso" }
+                        format.json { render :show, status: :created, location: @movement }
+                      else
+                        format.html { render :new, status: :unprocessable_entity }
+                        format.json { render json: @movement.errors, status: :unprocessable_entity }
+                      end
+                    end
+                  end
+                else
+                  # Check if the transfer amount added to the fee amount is greater than the current balance
+                  if (@movement.cashout + 17) > @valor.cash
+                    flash[:error] = "Saldo insuficiente para realizar transferência"
+                    respond_to do |format|
+                    format.html { redirect_to request.referrer, notice: "Saldo insuficiente para transferência" }
+                    end
+                  else
+                    new_cash = @valor.cash - (@movement.cashout + 17)
+                    User.update(cash: new_cash)
+                    User.where(email: @movement.destiny).update_all(cash:@valor.cash + @movement.cashout)
+                    respond_to do |format|
+                      if @movement.save
+                        format.html { redirect_to request.referrer, notice: "Transferência realizado com sucesso" }
+                        format.json { render :show, status: :created, location: @movement }
+                      else
+                        format.html { render :new, status: :unprocessable_entity }
+                        format.json { render json: @movement.errors, status: :unprocessable_entity }
+                      end
+                    end
+                  end
+                end
+              else
+                # Check if the time of movement is between 9 and 18 to charge 5 more. If not... charge 7 reais more
+                if @movement.hour_current >= "09" && @movement.hour_current <= "18"
+                  # Check if the transfer amount added to the fee amount is greater than the current balance
+                  if (@movement.cashout + 5) > @valor.cash
+                    flash[:error] = "Saldo insuficiente para realizar transferência"
+                    respond_to do |format|
+                    format.html { redirect_to request.referrer, notice: "Saldo insuficiente para transferência" }
+                    end
+                  else
+                    new_cash = @valor.cash - (@movement.cashout + 5)
+                    User.update(cash: new_cash)
+                    User.where(email: @movement.destiny).update_all(cash:@valor.cash + @movement.cashout)
+                    respond_to do |format|
+                      if @movement.save
+                        format.html { redirect_to request.referrer, notice: "Transferência realizado com sucesso" }
+                        format.json { render :show, status: :created, location: @movement }
+                      else
+                        format.html { render :new, status: :unprocessable_entity }
+                        format.json { render json: @movement.errors, status: :unprocessable_entity }
+                      end
+                    end
+                  end
+                else
+                  # Check if the transfer amount added to the fee amount is greater than the current balance
+                  if (@movement.cashout + 7) > @valor.cash
+                    flash[:error] = "Saldo insuficiente para realizar transferência"
+                    respond_to do |format|
+                    format.html { redirect_to request.referrer, notice: "Saldo insuficiente para transferência" }
+                    end
+                  else
+                    new_cash = @valor.cash - (@movement.cashout + 7)
+                    User.update(cash: new_cash)
+                    User.where(email: @movement.destiny).update_all(cash:@valor.cash + @movement.cashout)
+                    respond_to do |format|
+                      if @movement.save
+                        format.html { redirect_to request.referrer, notice: "Transferência realizado com sucesso" }
+                        format.json { render :show, status: :created, location: @movement }
+                      else
+                        format.html { render :new, status: :unprocessable_entity }
+                        format.json { render json: @movement.errors, status: :unprocessable_entity }
+                      end
+                    end
+                  end
+                end
+              end
+            end              
+          end
+        end
       end
-
   end
 
   # PATCH/PUT /movements/1 or /movements/1.json
