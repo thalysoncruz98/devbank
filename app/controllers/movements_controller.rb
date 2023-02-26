@@ -12,7 +12,9 @@ class MovementsController < ApplicationController
 
   # SEARCH FOR MOVEMENTS
   def search
-    @movements = Movement.where("date_current BETWEEN ? AND ?", params[:q], params[:i])
+    start_date = Date.strptime(params[:q], "%d/%m/%Y")
+    end_date = Date.strptime(params[:i], "%d/%m/%Y")
+    @movements = Movement.where("to_date(date_current, 'DD/MM/YYYY') BETWEEN ? AND ?", start_date, end_date)
   end
 
   # GET /movements/new
