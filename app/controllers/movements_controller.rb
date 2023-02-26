@@ -10,6 +10,11 @@ class MovementsController < ApplicationController
   def show
   end
 
+  # SEARCH FOR MOVEMENTS
+  def search
+    @movements = Movement.where("date_current BETWEEN ? AND ?", params[:q], params[:i])
+  end
+
   # GET /movements/new
   def new
     @movement = Movement.new
