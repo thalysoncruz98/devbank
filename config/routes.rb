@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   #Initial redirect to login
   root :to => redirect('/login')
+  #Route to fetch moves
+  get'search',to: "movements#search"
   # Defines the root path route ("/")
   resources :movements
   resources :accounts
