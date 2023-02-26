@@ -2,6 +2,6 @@
     <tr>
         <td><%= movement.created_at.in_time_zone("Brasilia").strftime("%d/%m/%Y %H:%M") %></td>
         <td><%= movement.movement_type %></td>
-        <td><%= movement.cashout %></td>
+        <td><%= number_to_currency(movement.cashout, unit: "R$ ", separator: ",", delimiter: ".") %></td>
     </tr>
 </div>
