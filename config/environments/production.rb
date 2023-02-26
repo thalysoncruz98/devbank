@@ -64,6 +64,9 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+  # link to create email to unlock account
+  config.action_mailer.default_url_options = { host: '159.203.168.157' }
+
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
