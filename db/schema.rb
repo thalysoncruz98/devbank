@@ -28,6 +28,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_26_190644) do
     t.string "hour_current"
     t.string "day_current"
     t.money "cashout", scale: 2
+    t.string "user"
   end
 
   create_table "users", force: :cascade do |t|
