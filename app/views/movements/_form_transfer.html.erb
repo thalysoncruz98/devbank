@@ -18,7 +18,7 @@
         <i class="fa fa-envelope-open" aria-hidden="true"> &nbsp;</i>
       </div>
   
-      <div class="cashInput">
+      <div class="cashInput py-5 my-3">
         <%= form.text_field :cashout, autocomplete: "off", autofocus:true %>
         <%= form.hidden_field :movement_type, value: "Transferência" %>
         <%= form.hidden_field :user, value: current_user.id %>
